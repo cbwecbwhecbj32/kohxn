@@ -39,6 +39,65 @@ DEFAULT_SLOTS = [
     {"slot": 7, "flag": "🌐", "country_code": "xx", "label": "Variable"},
 ]
 
+def migrate_nodes_table_for_7_slots():
+    """
+    جدول nodes رو از CHECK(1-5) به CHECK(1-7) مهاجرت می‌ده.
+    
+    چون SQLite اجازه‌ی تغییر CHECK رو نمی‌ده، جدول رو از نو می‌سازیم.
+    """
+    conn = get_db()
+    try:
+        # چک کن جدول فعلی، CHECK قدیمی داره یا نه
+        cur = conn.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name='nodes'")
+        row = cur.fetchone()
+        if not row:
+            return  # جدول وجود نداره، بعداً ساخته می‌شه
+        
+        current_sql = row["sql"] or ""
+        if "BETWEEN 1 AND 7" in current_sql:
+            return  # از قبل درسته
+        
+        logger.warning("[NODE] Migrating nodes table from CHECK(1-5) to CHECK(1-7)...")
+        
+        # ۱. جدول قدیمی رو rename کن
+        conn.execute("ALTER TABLE nodes RENAME TO nodes_old")
+        
+        # ۲. جدول جدید بساز
+        conn.execute("""
+            CREATE TABLE nodes (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                slot INTEGER UNIQUE CHECK(slot BETWEEN 1 AND 7),
+                name TEXT NOT NULL,
+                country_code TEXT NOT NULL,
+                flag TEXT NOT NULL,
+                address TEXT NOT NULL,
+                api_token TEXT NOT NULL,
+                status TEXT DEFAULT 'unknown',
+                enabled INTEGER DEFAULT 1,
+                last_check REAL,
+                last_stats_json TEXT,
+                created_at TEXT NOT NULL
+            )
+        """)
+        
+        # ۳. داده‌های قدیمی رو کپی کن
+        conn.execute("""
+            INSERT INTO nodes (id, slot, name, country_code, flag, address, api_token, status, enabled, last_check, last_stats_json, created_at)
+            SELECT id, slot, name, country_code, flag, address, api_token, status, enabled, last_check, last_stats_json, created_at
+            FROM nodes_old
+        """)
+        
+        # ۴. جدول قدیمی رو پاک کن
+        conn.execute("DROP TABLE nodes_old")
+        
+        conn.commit()
+        logger.info("[NODE] Successfully migrated nodes table to CHECK(1-7)")
+    except Exception as e:
+        logger.error(f"[NODE] Migration failed: {e}")
+        conn.rollback()
+    finally:
+        conn.close()
+
 
 def init_default_slots():
     """
