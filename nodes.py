@@ -107,6 +107,7 @@ def init_default_slots():
     - اگه جدول پره، فقط اسلات‌های جدید (که نیستن) رو اضافه می‌کنه
     """
     conn = get_db()
+    migrate_nodes_table_for_7_slots()
     try:
         # چک کن کدوم اسلات‌ها هستن
         cur = conn.execute("SELECT slot FROM nodes")
