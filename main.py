@@ -4465,6 +4465,8 @@ body[dir="rtl"]{direction:rtl;text-align:right}
                 <option value="3">3 - 🇳🇱 Netherlands</option>
                 <option value="4">4 - 🇫🇮 Finland</option>
                 <option value="5">5 - 🌐 Variable</option>
+                <option value="6">6 - 🌐 Variable</option>
+                <option value="7">7 - 🌐 Variable</option>
               </select>
               <div style="font-size:10px;color:var(--text3);margin-top:4px">توی پنل Master، توی کدوم اسلات قرار داری؟</div>
             </div>
