@@ -386,7 +386,7 @@ COUNTRIES = {
     "br": {"name": "Brazil",        "flag": "🇧🇷"},
 }
 
-MAX_NODES = 5
+MAX_NODES = 7
 
 NODE_SETTINGS_KEYS = (
     "panel_role",
@@ -713,7 +713,7 @@ def init_db():
         );
         CREATE TABLE IF NOT EXISTS nodes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            slot INTEGER UNIQUE CHECK(slot BETWEEN 1 AND 5),
+            slot INTEGER UNIQUE CHECK(slot BETWEEN 1 AND 7),
             name TEXT NOT NULL,
             country_code TEXT NOT NULL,
             flag TEXT NOT NULL,
