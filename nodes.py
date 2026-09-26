@@ -35,24 +35,29 @@ DEFAULT_SLOTS = [
     {"slot": 3, "flag": "🇳🇱", "country_code": "nl", "label": "Netherlands"},
     {"slot": 4, "flag": "🇫🇮", "country_code": "fi", "label": "Finland"},
     {"slot": 5, "flag": "🌐", "country_code": "xx", "label": "Variable"},
+    {"slot": 6, "flag": "🌐", "country_code": "xx", "label": "Variable"},
+    {"slot": 7, "flag": "🌐", "country_code": "xx", "label": "Variable"},
 ]
 
 
 def init_default_slots():
     """
-    اگه جدول nodes خالی باشه، ۵ اسلات پیش‌فرض رو می‌سازه.
-    (اسلات‌ها با address و token خالی می‌شن، آماده برای پر شدن توسط ادمین)
+    اسلات‌های پیش‌فرض رو توی جدول nodes می‌سازه.
+    
+    - اگه جدول خالیه، همه ۷ اسلات رو می‌سازه
+    - اگه جدول پره، فقط اسلات‌های جدید (که نیستن) رو اضافه می‌کنه
     """
     conn = get_db()
     try:
-        cur = conn.execute("SELECT COUNT(*) as cnt FROM nodes")
-        row = cur.fetchone()
-        if row and row["cnt"] > 0:
-            logger.info(f"[NODE] {row['cnt']} node slot(s) already exist. Skipping default init.")
-            return
+        # چک کن کدوم اسلات‌ها هستن
+        cur = conn.execute("SELECT slot FROM nodes")
+        existing_slots = {row["slot"] for row in cur.fetchall()}
         
         now = datetime.now(timezone.utc).isoformat()
+        added = 0
         for s in DEFAULT_SLOTS:
+            if s["slot"] in existing_slots:
+                continue  # از قبل هست
             conn.execute("""
                 INSERT INTO nodes (slot, name, country_code, flag, address, api_token, status, enabled, created_at)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -61,19 +66,23 @@ def init_default_slots():
                 s["label"],
                 s["country_code"],
                 s["flag"],
-                "",           # address خالی
-                "",           # api_token خالی
-                "empty",      # وضعیت: empty
+                "",
+                "",
+                "empty",
                 1,
                 now,
             ))
+            added += 1
         conn.commit()
-        logger.info(f"[NODE] Initialized {len(DEFAULT_SLOTS)} default node slots (🇺🇸 🇸🇬 🇳🇱 🇫🇮 🌐)")
+        
+        if added > 0:
+            logger.info(f"[NODE] Initialized {added} new node slot(s)")
+        else:
+            logger.info(f"[NODE] All {len(existing_slots)} node slots already exist")
     except Exception as e:
         logger.error(f"[NODE] Error initializing default slots: {e}")
     finally:
         conn.close()
-
 
 # ═══════════════════════════════════════════════════════════════════════
 # توابع اصلی مدیریت نودها
