@@ -3739,15 +3739,41 @@ PANEL_HTML = r"""<!DOCTYPE html>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --gold:#ff0033;--gold2:#ff3355;--gold3:#cc0022;--gold-dim:rgba(255,0,51,0.18);
-  --black:#050505;--black2:#0a0505;--black3:#120808;
-  --surface:rgba(20,8,8,0.6);--surface2:rgba(30,12,12,0.5);--surface3:rgba(40,15,15,0.4);
-  --border:rgba(255,0,51,0.18);--border2:rgba(255,0,51,0.4);
-  --text:rgba(255,255,255,0.95);--text2:rgba(255,180,180,0.85);--text3:rgba(255,255,255,0.45);
-  --gold-glow:0 0 28px rgba(255,0,51,0.5);
-  --green:#22c55e;--green-dim:rgba(34,197,94,0.12);
-  --red:#ef4444;--red-dim:rgba(239,68,68,0.12);
-  --yellow:#fbbf24;
+  /* 🥇 رزگلد لاکچری */
+  --gold:#e8b4a0;
+  --gold2:#f4c4b0;
+  --gold3:#c89480;
+  --gold-dim:rgba(232,180,160,0.15);
+  
+  /* 🌑 مشکی مخملی */
+  --black:#0a0a0f;
+  --black2:#101015;
+  --black3:#181820;
+  
+  /* 🎴 کارت‌های شیشه‌ای لوکس */
+  --surface:rgba(20,18,30,0.75);
+  --surface2:rgba(30,25,40,0.65);
+  --surface3:rgba(40,35,55,0.55);
+  
+  /* ✨ Border طلایی */
+  --border:rgba(232,180,160,0.18);
+  --border2:rgba(232,180,160,0.4);
+  
+  /* ⚪ متن کرمی */
+  --text:#f5f0e8;
+  --text2:#d4c5b0;
+  --text3:#a89a85;
+  
+  /* ✨ گلوی طلایی نرم */
+  --gold-glow:0 0 28px rgba(232,180,160,0.4);
+  
+  /* 🎯 وضعیت */
+  --green:#10b981;
+  --green-dim:rgba(16,185,129,0.12);
+  --red:#ef4444;
+  --red-dim:rgba(239,68,68,0.12);
+  --yellow:#f59e0b;
+  
   --nav-w:64px;
 }
 body.light-mode{
