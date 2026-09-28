@@ -3739,14 +3739,14 @@ PANEL_HTML = r"""<!DOCTYPE html>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --gold:#3b82f6;--gold2:#60a5fa;--gold3:#2563eb;--gold-dim:rgba(59,130,246,0.18);
-  --black:#060b16;--black2:#0a1220;--black3:#111b2e;
-  --surface:rgba(12,22,42,0.65);--surface2:rgba(18,32,58,0.55);--surface3:rgba(28,45,75,0.5);
-  --border:rgba(96,165,250,0.18);--border2:rgba(96,165,250,0.35);
-  --text:rgba(255,255,255,0.94);--text2:rgba(147,197,253,0.85);--text3:rgba(255,255,255,0.42);
-  --gold-glow:0 0 28px rgba(59,130,246,0.35);
-  --green:#4ade80;--green-dim:rgba(74,222,128,0.12);
-  --red:#f87171;--red-dim:rgba(248,113,113,0.12);
+  --gold:#ff0033;--gold2:#ff3355;--gold3:#cc0022;--gold-dim:rgba(255,0,51,0.18);
+  --black:#050505;--black2:#0a0505;--black3:#120808;
+  --surface:rgba(20,8,8,0.6);--surface2:rgba(30,12,12,0.5);--surface3:rgba(40,15,15,0.4);
+  --border:rgba(255,0,51,0.18);--border2:rgba(255,0,51,0.4);
+  --text:rgba(255,255,255,0.95);--text2:rgba(255,180,180,0.85);--text3:rgba(255,255,255,0.45);
+  --gold-glow:0 0 28px rgba(255,0,51,0.5);
+  --green:#22c55e;--green-dim:rgba(34,197,94,0.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,0.12);
   --yellow:#fbbf24;
   --nav-w:64px;
 }
