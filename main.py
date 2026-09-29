@@ -3739,15 +3739,41 @@ PANEL_HTML = r"""<!DOCTYPE html>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --gold:#3b82f6;--gold2:#60a5fa;--gold3:#2563eb;--gold-dim:rgba(59,130,246,0.18);
-  --black:#060b16;--black2:#0a1220;--black3:#111b2e;
-  --surface:rgba(12,22,42,0.65);--surface2:rgba(18,32,58,0.55);--surface3:rgba(28,45,75,0.5);
-  --border:rgba(96,165,250,0.18);--border2:rgba(96,165,250,0.35);
-  --text:rgba(255,255,255,0.94);--text2:rgba(147,197,253,0.85);--text3:rgba(255,255,255,0.42);
-  --gold-glow:0 0 28px rgba(59,130,246,0.35);
-  --green:#4ade80;--green-dim:rgba(74,222,128,0.12);
-  --red:#f87171;--red-dim:rgba(248,113,113,0.12);
+  /* 🔥 قرمز مخملی */
+  --gold:#dc2626;
+  --gold2:#ef4444;
+  --gold3:#991b1b;
+  --gold-dim:rgba(220,38,38,0.2);
+  
+  /* 🖤 مشکی خالص */
+  --black:#000000;
+  --black2:#0a0000;
+  --black3:#140505;
+  
+  /* 🎴 کارت‌های شیشه‌ای با رگه قرمز */
+  --surface:rgba(15,5,5,0.8);
+  --surface2:rgba(25,8,8,0.7);
+  --surface3:rgba(35,12,12,0.6);
+  
+  /* ✨ Border قرمز محو */
+  --border:rgba(220,38,38,0.2);
+  --border2:rgba(220,38,38,0.45);
+  
+  /* ⚪ متن سفید-کرمی */
+  --text:#faf5f5;
+  --text2:#f4c5c5;
+  --text3:#a88686;
+  
+  /* ✨ گلوی قرمز */
+  --gold-glow:0 0 30px rgba(220,38,38,0.5);
+  
+  /* 🎯 وضعیت */
+  --green:#22c55e;
+  --green-dim:rgba(34,197,94,0.12);
+  --red:#ef4444;
+  --red-dim:rgba(239,68,68,0.12);
   --yellow:#fbbf24;
+  
   --nav-w:64px;
 }
 body.light-mode{
